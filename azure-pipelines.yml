@@ -15,7 +15,7 @@ steps:
     SourceFolder: '$(Build.SourcesDirectory)/dist'
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-  displayName: 'Copy fileds'
+  displayName: 'Copy files'
 
 - task: ArchiveFiles@2
   inputs:
