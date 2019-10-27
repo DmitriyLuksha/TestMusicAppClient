@@ -15,6 +15,7 @@ steps:
     SourceFolder: '$(Build.SourcesDirectory)/dist'
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+  displayName: 'Copy fileds'
 
 - task: ArchiveFiles@2
   inputs:
@@ -23,6 +24,7 @@ steps:
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
+  displayName: 'Archive files'
 
 - task: PublishBuildArtifacts@1
   inputs:
