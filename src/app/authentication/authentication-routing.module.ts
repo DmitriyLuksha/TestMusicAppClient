@@ -8,10 +8,16 @@ const routes: Routes = [
     path: '',
     component: AuthenticationComponent,
     children: [
-    {
-      path: 'registration',
-      loadChildren: () => import('./registration/registration.module')
-        .then(m => m.RegistrationModule) }
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'registration',
+      },
+      {
+        path: 'registration',
+        loadChildren: () => import('./registration/registration.module')
+          .then(m => m.RegistrationModule)
+      }
     ]
   }
 ];
