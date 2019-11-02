@@ -12,7 +12,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/dist/TestMusicApp'
+    SourceFolder: '$(Build.SourcesDirectory)/dist/TestMusicAppClient'
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
   displayName: 'Copy files'
