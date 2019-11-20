@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'TestMusicAppClient';
+  notificationOptions = {
+    timeOut: 5000,
+    pauseOnHover: false
+  }
 }
