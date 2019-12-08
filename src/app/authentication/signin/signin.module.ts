@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { SignInComponent } from './signin.component';
+import { SignInComponent } from './components/signin/signin.component';
 import { SignInRoutingModule } from './signin-routing.module';
 
 @NgModule({

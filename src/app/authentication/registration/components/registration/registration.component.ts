@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { AuthenticationApiService } from '../authentication-api.service';
+import { AuthenticationApiService } from '../../../../core/api/authentication-api.service';
 import { FormGroup } from '@angular/forms';
-import { NotificationsService } from 'src/app/services/notifications.service';
-import { RegistrationFormData } from './models/registration-form-data.model'
+import { NotificationsService } from 'src/app/core/services/notifications.service';
+import { RegistrationFormData } from '../../models/registration-form-data.model'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sma-registration',
@@ -13,7 +14,8 @@ import { RegistrationFormData } from './models/registration-form-data.model'
 export class RegistrationComponent {
   constructor(
       private authenticationApiService: AuthenticationApiService,
-      private notificationsService: NotificationsService
+      private notificationsService: NotificationsService,
+      private router: Router
     ) {
       
     this.registrationData = {
@@ -125,8 +127,8 @@ export class RegistrationComponent {
         () => {
           this.notificationsService.success('Registered')
           this.isRegistrationWaiting = false;
-          this.isUsernameTaken = null;
-          this.isEmailTaken = null;
+          
+          this.router.navigate(['/authentication/signin']);
         },
         error => this.notificationsService.httpError('Registration', error)
       );

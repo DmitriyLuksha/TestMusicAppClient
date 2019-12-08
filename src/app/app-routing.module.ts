@@ -4,14 +4,19 @@ import { NgModule } from '@angular/core';
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home',
+  },
+  {
     path: 'authentication',
     loadChildren: () => import('./authentication/authentication.module')
       .then(m => m.AuthenticationModule)
   },
   {
-    path: 'app',
-    loadChildren: () => import('./application/application.module')
-      .then(m => m.ApplicationModule)
+    path: 'home',
+    loadChildren: () => import('./home/home.module')
+      .then(m => m.HomeModule)
   }
 ];
 

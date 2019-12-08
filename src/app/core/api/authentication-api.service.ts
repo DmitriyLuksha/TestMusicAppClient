@@ -42,7 +42,7 @@ export class AuthenticationApiService {
         return this.http.post('api/account/signin', params);
     }
 
-    test() {
-        return this.http.get('api/account/test');
+    signOut(): Observable<any> {
+        return this.http.post('api/account/signout', {});
     }
 }

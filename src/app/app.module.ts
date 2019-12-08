@@ -1,13 +1,14 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
-import { ApiInterceptor } from './interceptors/api.interceptor';
+import { ApiInterceptor } from './core/interceptors/api.interceptor';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AuthenticationService } from './services/authentication.service';
+import { AuthenticationApiService } from './core/api/authentication-api.service';
+import { AuthenticationService } from './core/services/authentication.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NotificationsService } from './services/notifications.service';
+import { NotificationsService } from './core/services/notifications.service';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 
 @NgModule({
@@ -28,7 +29,8 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
       multi: true,
     },
     NotificationsService,
-    AuthenticationService
+    AuthenticationService,
+    AuthenticationApiService
   ],
   bootstrap: [AppComponent]
 })

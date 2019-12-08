@@ -1,0 +1,14 @@
+@import 'styles/colors.scss';
+
+:host {
+    width: 100%;
+    height: 40px;
+    background-color: $background-gray;
+    border-bottom: 1px solid $main-border;
+
+    .avatar {
+        width: 30px;
+        float: right;
+        margin: 5px 10px;
+    }
+}

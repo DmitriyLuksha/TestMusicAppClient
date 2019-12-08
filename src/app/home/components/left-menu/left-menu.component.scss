@@ -1,0 +1,7 @@
+@import 'styles/colors.scss';
+
+:host {
+    width: 300px;
+    background-color: $background-gray;
+    border-right: 1px solid $main-border;
+}

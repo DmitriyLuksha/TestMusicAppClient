@@ -1,0 +1,27 @@
+@import 'styles/colors.scss';
+
+:host {
+    padding-top: 40px;
+    width: 120px;
+    position: absolute;
+    right: 0px;
+
+    &:hover {
+        .menu {
+            display: block;
+        }
+    }
+
+    .menu {
+        display: none;
+
+        .item {
+            width: 100%;
+            background-color: $background-gray;
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+}

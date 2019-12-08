@@ -4,7 +4,7 @@ import { catchError, map } from 'rxjs/operators';
 
 import { AuthenticationService } from '../services/authentication.service';
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
