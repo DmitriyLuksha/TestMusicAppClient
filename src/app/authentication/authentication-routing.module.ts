@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AuthenticationComponent } from './authentication.component';
+import { NgModule } from '@angular/core';
 
 const routes: Routes = [
   {
@@ -11,7 +11,12 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'registration',
+        redirectTo: 'signin',
+      },
+      {
+        path: 'signin',
+        loadChildren: () => import('./signin/signin.module')
+          .then(m => m.SignInModule)
       },
       {
         path: 'registration',

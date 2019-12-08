@@ -16,7 +16,12 @@ export class RegistrationComponent {
       private notificationsService: NotificationsService
     ) {
       
-    this.registrationData = {};
+    this.registrationData = {
+      username: null,
+      email: null,
+      password: null,
+      confirmPassword: null
+    };
   }
  
   registrationData: RegistrationFormData;

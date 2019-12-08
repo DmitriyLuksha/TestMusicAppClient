@@ -3,6 +3,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ApiInterceptor } from './interceptors/api.interceptor';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthenticationService } from './services/authentication.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -26,7 +27,8 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
       useClass: ApiInterceptor,
       multi: true,
     },
-    NotificationsService
+    NotificationsService,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

@@ -14,7 +14,7 @@ export class AuthenticationApiService {
             password: password
         };
  
-        return this.http.post('api/users', params);
+        return this.http.post('api/account', params);
     }
 
     isUsernameUnique(username: string): Observable<any> {
@@ -22,7 +22,7 @@ export class AuthenticationApiService {
             username: username
         }
 
-        return this.http.get('api/users/isUsernameUnique', { params: params });
+        return this.http.get('api/account/isUsernameUnique', { params: params });
     }
 
     isEmailUnique(email: string): Observable<any> {
@@ -30,6 +30,19 @@ export class AuthenticationApiService {
             email: email
         }
 
-        return this.http.get('api/users/isEmailUnique', { params: params });
+        return this.http.get('api/account/isEmailUnique', { params: params });
+    }
+
+    signIn(username: string, password: string): Observable<any> {
+        const params = {
+            username: username,
+            password: password
+        }
+
+        return this.http.post('api/account/signin', params);
+    }
+
+    test() {
+        return this.http.get('api/account/test');
     }
 }
