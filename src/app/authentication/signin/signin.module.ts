@@ -5,11 +5,11 @@ import { SignInComponent } from './components/signin/signin.component';
 import { SignInRoutingModule } from './signin-routing.module';
 
 @NgModule({
-  declarations: [SignInComponent],
-  imports: [
-    CommonModule,
-    SignInRoutingModule,
-    FormsModule
-  ]
+    declarations: [SignInComponent],
+    imports: [
+        CommonModule,
+        SignInRoutingModule,
+        FormsModule
+    ]
 })
 export class SignInModule { }

@@ -4,26 +4,26 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 import { AccountService } from 'src/app/core/services/account.service';
 
 @Component({
-  selector: 'sma-main-header',
-  templateUrl: './main-header.component.html',
-  styleUrls: ['./main-header.component.scss']
+    selector: 'sma-main-header',
+    templateUrl: './main-header.component.html',
+    styleUrls: ['./main-header.component.scss']
 })
 export class MainHeaderComponent implements OnInit {
 
-  constructor(
-    private authenticationService: AuthenticationService,
-    private accountService: AccountService,
-  ) { }
+    constructor(
+        private authenticationService: AuthenticationService,
+        private accountService: AccountService,
+    ) { }
 
-  accountDetails: AccountDetails;
+    accountDetails: AccountDetails;
 
-  async ngOnInit() {
-    try {
-      this.accountDetails = await this.accountService.getAccountDetails();
+    async ngOnInit() {
+        try {
+            this.accountDetails = await this.accountService.getAccountDetails();
+        }
+        catch(error) {
+            this.authenticationService.redirectToAuthenticationPage();
+        }
     }
-    catch(error) {
-      this.authenticationService.redirectToAuthenticationPage();
-    }
-  }
 
 }

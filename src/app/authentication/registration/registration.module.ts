@@ -5,11 +5,11 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { RegistrationRoutingModule } from './registration-routing.module';
 
 @NgModule({
-  declarations: [RegistrationComponent],
-  imports: [
-    CommonModule,
-    RegistrationRoutingModule,
-    FormsModule
-  ]
+    declarations: [RegistrationComponent],
+    imports: [
+        CommonModule,
+        RegistrationRoutingModule,
+        FormsModule
+    ]
 })
 export class RegistrationModule { }

@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  baseApiUrl: 'https://testmusicappserver.azurewebsites.net/api'
+    production: true,
+    baseApiUrl: 'https://testmusicappserver.azurewebsites.net/api'
 };

@@ -14,28 +14,28 @@ import { AuthenticationApiService } from './core/api/authentication-api.service'
 import { AccountService } from './core/services/account.service';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    SimpleNotificationsModule.forRoot()
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ApiInterceptor,
-      multi: true,
-    },
-    NotificationsService,
-    AuthenticationService,
-    AccountApiService,
-    AuthenticationApiService,
-    AccountService
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        SimpleNotificationsModule.forRoot()
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ApiInterceptor,
+            multi: true,
+        },
+        NotificationsService,
+        AuthenticationService,
+        AccountApiService,
+        AuthenticationApiService,
+        AccountService
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

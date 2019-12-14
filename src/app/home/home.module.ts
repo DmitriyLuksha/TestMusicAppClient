@@ -8,10 +8,10 @@ import { NgModule } from '@angular/core';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
 
 @NgModule({
-  declarations: [HomeComponent, MainHeaderComponent, LeftMenuComponent, ControlsComponent, UserMenuComponent],
-  imports: [
-    CommonModule,
-    HomeRoutingModule
-  ]
+    declarations: [HomeComponent, MainHeaderComponent, LeftMenuComponent, ControlsComponent, UserMenuComponent],
+    imports: [
+        CommonModule,
+        HomeRoutingModule
+    ]
 })
 export class HomeModule { }
