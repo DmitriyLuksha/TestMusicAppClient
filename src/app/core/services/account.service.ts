@@ -10,19 +10,10 @@ export class AccountService {
     private accountDetailsCache: AccountDetails;
     
     async getAccountDetails(): Promise<AccountDetails> {
-        if (this.accountDetailsCache != null) {
-            return Promise.resolve(this.accountDetailsCache);
+        if (this.accountDetailsCache == null) {
+            this.accountDetailsCache = await this.accountApiService.getAccountDetails().toPromise();
         }
 
-        return new Promise((resolve, reject) => {
-            this.accountApiService.getAccountDetails()
-                .subscribe(
-                    (details) => {
-                        this.accountDetailsCache = details;
-                        resolve(details);
-                    },
-                    (error) => reject(error)
-                );
-        });
+        return Promise.resolve(this.accountDetailsCache);
     }
 }

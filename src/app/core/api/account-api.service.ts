@@ -1,41 +1,40 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AccountDetails } from '../models/account-details.model';
 
 @Injectable()
 export class AccountApiService {
     constructor(private http: HttpClient) {
     }
     
-    // TODO: Rewrite API using async/await
-
-    registerUser(username: string, email: string, password: string): Observable<any> {
+    registerUser(username: string, email: string, password: string): Observable<void> {
         const params = {
             username: username,
             email: email,
             password: password
         };
  
-        return this.http.post('api/account', params);
+        return <Observable<void>>(<unknown>this.http.post('api/account', params));
     }
 
-    isUsernameUnique(username: string): Observable<any> {
+    isUsernameUnique(username: string): Observable<boolean> {
         const params = {
             username: username
         }
 
-        return this.http.get('api/account/isUsernameUnique', { params: params });
+        return <Observable<boolean>>this.http.get('api/account/isUsernameUnique', { params: params });
     }
 
-    isEmailUnique(email: string): Observable<any> {
+    isEmailUnique(email: string): Observable<boolean> {
         const params = {
             email: email
         }
 
-        return this.http.get('api/account/isEmailUnique', { params: params });
+        return <Observable<boolean>>this.http.get('api/account/isEmailUnique', { params: params });
     }
 
-    getAccountDetails(): Observable<any> {
-        return this.http.get('api/account/details');
+    getAccountDetails(): Observable<AccountDetails> {
+        return <Observable<AccountDetails>>this.http.get('api/account/details');
     }
 }

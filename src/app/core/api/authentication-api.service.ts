@@ -7,16 +7,16 @@ export class AuthenticationApiService {
     constructor(private http: HttpClient) {
     }
 
-    signIn(username: string, password: string): Observable<any> {
+    signIn(username: string, password: string): Observable<void> {
         const params = {
             username: username,
             password: password
         }
 
-        return this.http.post('api/account/signin', params);
+        return <Observable<void>>(<unknown>this.http.post('api/account/signin', params));
     }
 
-    signOut(): Observable<any> {
-        return this.http.post('api/account/signout', {});
+    signOut(): Observable<void> {
+        return <Observable<void>>(<unknown>this.http.post('api/account/signout', {}));
     }
 }
