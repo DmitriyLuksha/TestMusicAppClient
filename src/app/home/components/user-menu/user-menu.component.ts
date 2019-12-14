@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AuthenticationApiService } from 'src/app/core/api/authentication-api.service';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'sma-user-menu',
@@ -10,16 +10,16 @@ import { Router } from '@angular/router';
 })
 export class UserMenuComponent implements OnInit {
 
-  constructor(private authenticationApiService: AuthenticationApiService,
-    private router: Router) {
-
-  }
+  constructor(
+    private authenticationService: AuthenticationService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
   signOut() {
-    this.authenticationApiService
+    this.authenticationService
       .signOut()
       .subscribe(() => this.router.navigate(['/authentication/signin']));
   }

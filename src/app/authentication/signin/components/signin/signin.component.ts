@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AuthenticationApiService } from '../../../../core/api/authentication-api.service';
 import { NotificationsService } from 'src/app/core/services/notifications.service';
 import { Router } from '@angular/router';
 import { SignInFormData } from '../../models/sign-in-form-data.model';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'sma-signin',
@@ -12,7 +12,7 @@ import { SignInFormData } from '../../models/sign-in-form-data.model';
 })
 export class SignInComponent implements OnInit {
   constructor(
-    private authenticationApiService: AuthenticationApiService,
+    private authenticationService: AuthenticationService,
     private notificationsService: NotificationsService,
     private router: Router
   ) {
@@ -28,7 +28,8 @@ export class SignInComponent implements OnInit {
   signInData: SignInFormData;
 
   signIn() {
-    this.authenticationApiService.signIn(this.signInData.username, this.signInData.password)
+    this.authenticationService
+      .signIn(this.signInData.username, this.signInData.password)
       .subscribe(
         () => {
           this.notificationsService.success('Signed in');

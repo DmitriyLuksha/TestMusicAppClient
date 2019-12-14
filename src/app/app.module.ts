@@ -3,13 +3,15 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ApiInterceptor } from './core/interceptors/api.interceptor';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AuthenticationApiService } from './core/api/authentication-api.service';
+import { AccountApiService } from './core/api/account-api.service';
 import { AuthenticationService } from './core/services/authentication.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NotificationsService } from './core/services/notifications.service';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { AuthenticationApiService } from './core/api/authentication-api.service';
+import { AccountService } from './core/services/account.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     },
     NotificationsService,
     AuthenticationService,
-    AuthenticationApiService
+    AccountApiService,
+    AuthenticationApiService,
+    AccountService
   ],
   bootstrap: [AppComponent]
 })

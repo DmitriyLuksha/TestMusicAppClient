@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { AuthenticationApiService } from '../../../../core/api/authentication-api.service';
+import { AccountApiService } from '../../../../core/api/account-api.service';
 import { FormGroup } from '@angular/forms';
 import { NotificationsService } from 'src/app/core/services/notifications.service';
 import { RegistrationFormData } from '../../models/registration-form-data.model'
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class RegistrationComponent {
   constructor(
-      private authenticationApiService: AuthenticationApiService,
+      private accountApiService: AccountApiService,
       private notificationsService: NotificationsService,
       private router: Router
     ) {
@@ -68,7 +68,7 @@ export class RegistrationComponent {
     }
 
     if (this.registrationData.username) {
-      this.authenticationApiService.isUsernameUnique(this.registrationData.username)
+      this.accountApiService.isUsernameUnique(this.registrationData.username)
         .subscribe(
           isUnique => {
             this.isUsernameTaken = !isUnique;
@@ -85,7 +85,7 @@ export class RegistrationComponent {
     }
     
     if (this.registrationData.email) {
-      this.authenticationApiService.isEmailUnique(this.registrationData.email)
+      this.accountApiService.isEmailUnique(this.registrationData.email)
         .subscribe(
           isUnique => {
             this.isEmailTaken = !isUnique;
@@ -119,7 +119,7 @@ export class RegistrationComponent {
   }
 
   private sendRegistrationRequest() {
-    this.authenticationApiService
+    this.accountApiService
       .registerUser(this.registrationData.username,
         this.registrationData.email,
         this.registrationData.password)
