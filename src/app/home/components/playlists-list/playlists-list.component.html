@@ -1,5 +1,8 @@
 <div class="playlists-wrapper list-group">
-    <div class="playlist list-group-item" *ngFor="let playlist of playlists">
+    <button *ngFor="let playlist of playlists"
+            class="playlist list-group-item list-group-item-action"
+            [ngClass]="{'active': playlist.id === selectedPlaylistId}"
+            (click)="onPlaylistClicked(playlist)">
         {{playlist.name}}
-    </div>
+    </button>
 </div>

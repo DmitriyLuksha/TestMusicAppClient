@@ -2,55 +2,61 @@ import { Injectable, Type } from '@angular/core';
 
 import BaseEvent from '../events/base.event';
 
-interface Listener<T extends BaseEvent> {
-    type: Type<T>,
-    callbacks: ((event: T) => void)[]
+interface TypeListener<T extends BaseEvent> {
+    type: Type<T>;
+    listeners: {
+        callback: (event: T) => void;
+        thisArg?: any;
+    }[]
 }
 
 @Injectable()
 export class EventsService {
     constructor() {
-        this.listeners = [];
+        this.typeListeners = [];
     }
 
-    listeners: Listener<BaseEvent>[];
+    typeListeners: TypeListener<BaseEvent>[];
 
-    on<T extends BaseEvent>(type: Type<T>, callback: (event: T) => void) {
-        let listener = this.listeners.find(e => e.type === type) as Listener<T>;
+    on<T extends BaseEvent>(type: Type<T>, callback: (event: T) => void, thisArg?: any) {
+        let typeListener = this.typeListeners.find(e => e.type === type) as TypeListener<T>;
 
-        if (!listener) {
-            listener = {
+        if (!typeListener) {
+            typeListener = {
                 type: type,
-                callbacks: []
+                listeners: []
             };
 
-            this.listeners.push(listener);
+            this.typeListeners.push(typeListener);
         }
 
-        listener.callbacks.push(callback);
+        typeListener.listeners.push({
+            callback: callback,
+            thisArg: thisArg
+        });
     }
 
     off<T extends BaseEvent>(type: Type<T>, callback: (event: T) => void) {
-        let listener = this.listeners.find(e => e.type === type) as Listener<T>;
+        let typeListener = this.typeListeners.find(e => e.type === type) as TypeListener<T>;
 
-        if (listener) {
-            listener.callbacks = listener.callbacks.filter(c => c !== callback);
+        if (typeListener) {
+            typeListener.listeners = typeListener.listeners.filter(l => l.callback !== callback);
 
-            if (listener.callbacks.length === 0) {
-                this.listeners = this.listeners.filter(l => l.type !== type);
+            if (typeListener.listeners.length === 0) {
+                this.typeListeners = this.typeListeners.filter(tl => tl.type !== type);
             }
         }
     }
 
     broadcast<T extends BaseEvent>(event: T) {
-        let listener = this.listeners.find((l) => l.type === event.constructor);
+        let typeListener = this.typeListeners.find((tl) => tl.type === event.constructor);
 
-        if (!listener) {
+        if (!typeListener) {
             return;
         }
 
-        for (let callback of listener.callbacks) {
-            callback(event);
+        for (let listener of typeListener.listeners) {
+            listener.callback.call(listener.thisArg, event);
         }
     }
 }

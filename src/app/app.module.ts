@@ -13,6 +13,7 @@ import { EventsService } from './core/services/events.service';
 import { NgModule } from '@angular/core';
 import { NotificationsService } from './core/services/notifications.service';
 import { PlaylistApiService } from './core/api/playlist-api.service';
+import { RouteDataService } from './core/services/route-data.service';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 
 @NgModule({
@@ -38,7 +39,8 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
         NotificationsService,
         AuthenticationService,
         AccountService,
-        EventsService
+        EventsService,
+        RouteDataService
     ],
     bootstrap: [AppComponent]
 })

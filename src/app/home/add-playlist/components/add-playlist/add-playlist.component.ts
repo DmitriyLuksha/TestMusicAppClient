@@ -4,7 +4,7 @@ import { AddPlaylistFormData } from '../../models/add-playlist-form-data.model';
 import { EventsService } from 'src/app/core/services/events.service';
 import { NotificationsService } from 'src/app/core/services/notifications.service';
 import { PlaylistApiService } from 'src/app/core/api/playlist-api.service';
-import PlaylistUpdatedEvent from 'src/app/core/events/playlistUpdated.event';
+import PlaylistUpdatedEvent from 'src/app/home/events/playlistUpdated.event';
 import { Router } from '@angular/router';
 
 @Component({

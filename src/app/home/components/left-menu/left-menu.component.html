@@ -3,4 +3,8 @@
         (click)="addPlaylist()">
     Add playlist
 </button>
-<sma-playlists-list [playlists]="playlists"></sma-playlists-list>
+<sma-playlists-list
+    [playlists]="playlists"
+    [selectedPlaylistId]="selectedPlaylistId"
+    (playlistClicked)="onPlaylistClicked($event)">
+</sma-playlists-list>

@@ -16,6 +16,11 @@ const routes: Routes = [
                         path: 'add',
                         loadChildren: () => import('./add-playlist/add-playlist.module')
                             .then(m => m.AddPlaylistModule)
+                   },
+                   {
+                       path: ':playlistId',
+                       loadChildren: () => import('./playlist/playlist.module')
+                            .then(m => m.PlaylistModule)
                    }
                 ]
             }
