@@ -1,17 +1,19 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
+import { AccountApiService } from './core/api/account-api.service';
+import { AccountService } from './core/services/account.service';
 import { ApiInterceptor } from './core/interceptors/api.interceptor';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AccountApiService } from './core/api/account-api.service';
+import { AuthenticationApiService } from './core/api/authentication-api.service';
 import { AuthenticationService } from './core/services/authentication.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { EventsService } from './core/services/events.service';
 import { NgModule } from '@angular/core';
 import { NotificationsService } from './core/services/notifications.service';
+import { PlaylistApiService } from './core/api/playlist-api.service';
 import { SimpleNotificationsModule } from 'angular2-notifications';
-import { AuthenticationApiService } from './core/api/authentication-api.service';
-import { AccountService } from './core/services/account.service';
 
 @NgModule({
     declarations: [
@@ -30,11 +32,13 @@ import { AccountService } from './core/services/account.service';
             useClass: ApiInterceptor,
             multi: true,
         },
-        NotificationsService,
-        AuthenticationService,
         AccountApiService,
         AuthenticationApiService,
-        AccountService
+        PlaylistApiService,
+        NotificationsService,
+        AuthenticationService,
+        AccountService,
+        EventsService
     ],
     bootstrap: [AppComponent]
 })

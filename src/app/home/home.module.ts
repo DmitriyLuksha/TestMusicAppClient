@@ -6,9 +6,10 @@ import { LeftMenuComponent } from './components/left-menu/left-menu.component';
 import { MainHeaderComponent } from './components/main-header/main-header.component';
 import { NgModule } from '@angular/core';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
+import { PlaylistsListComponent } from './components/playlists-list/playlists-list.component';
 
 @NgModule({
-    declarations: [HomeComponent, MainHeaderComponent, LeftMenuComponent, ControlsComponent, UserMenuComponent],
+    declarations: [HomeComponent, MainHeaderComponent, LeftMenuComponent, ControlsComponent, UserMenuComponent, PlaylistsListComponent],
     imports: [
         CommonModule,
         HomeRoutingModule

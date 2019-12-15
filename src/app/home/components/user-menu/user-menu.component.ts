@@ -9,7 +9,6 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
     styleUrls: ['./user-menu.component.scss']
 })
 export class UserMenuComponent implements OnInit {
-
     constructor(
         private authenticationService: AuthenticationService,
         private router: Router
@@ -23,5 +22,4 @@ export class UserMenuComponent implements OnInit {
             .signOut()
             .subscribe(() => this.router.navigate(['/authentication/signin']));
     }
-
 }

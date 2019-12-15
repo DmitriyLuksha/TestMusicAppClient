@@ -1,0 +1,18 @@
+:host {
+    flex: 1;
+    display: block;
+    overflow: auto;
+
+    // Hack to make scroller with dynamic height work
+    // TODO Think about way to get rid of it
+    height: 0px;
+
+    .playlists-wrapper {
+        display: block;
+        height: 100%;
+
+        .playlist {
+            padding: 8px 20px;
+        }
+    }
+}

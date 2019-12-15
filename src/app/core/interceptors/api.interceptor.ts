@@ -1,3 +1,5 @@
+import * as HttpStatus from 'http-status-codes'
+
 import { HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -39,7 +41,7 @@ export class ApiInterceptor implements HttpInterceptor {
                 return event;
             }),
             catchError((err: HttpErrorResponse) => {
-                if (err.status == 401) {
+                if (err.status === HttpStatus.UNAUTHORIZED) {
                     this.authenticationService.redirectToAuthenticationPage();
                 }
                 

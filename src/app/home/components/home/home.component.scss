@@ -4,9 +4,14 @@
     height: 100%;
     flex-direction: column;
 
-    .content {
+    .center {
         display: flex;
         flex: 1;
         flex-direction: row;
+
+        .content {
+            flex: 1;
+            padding: 10px;
+        }
     }
 }

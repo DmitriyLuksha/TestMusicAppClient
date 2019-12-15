@@ -15,7 +15,7 @@ export class AccountApiService {
             password: password
         };
  
-        return <Observable<void>>(<unknown>this.http.post('api/account', params));
+        return <Observable<void>>(<unknown>this.http.post('api/accounts', params));
     }
 
     isUsernameUnique(username: string): Observable<boolean> {
@@ -23,7 +23,7 @@ export class AccountApiService {
             username: username
         }
 
-        return <Observable<boolean>>this.http.get('api/account/isUsernameUnique', { params: params });
+        return <Observable<boolean>>this.http.get('api/accounts/isUsernameUnique', { params: params });
     }
 
     isEmailUnique(email: string): Observable<boolean> {
@@ -31,10 +31,10 @@ export class AccountApiService {
             email: email
         }
 
-        return <Observable<boolean>>this.http.get('api/account/isEmailUnique', { params: params });
+        return <Observable<boolean>>this.http.get('api/accounts/isEmailUnique', { params: params });
     }
 
     getAccountDetails(): Observable<AccountDetails> {
-        return <Observable<AccountDetails>>this.http.get('api/account/details');
+        return <Observable<AccountDetails>>this.http.get('api/accounts/details');
     }
 }

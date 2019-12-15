@@ -1,0 +1,16 @@
+<form #addPlaylistForm="ngForm" (ngSubmit)="addPlaylist()">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input name="name"
+            id="name"
+            class="form-control"
+            [(ngModel)]="addPlaylistData.name"
+            maxlength="100"
+            required>
+    </div>
+    <button type="submit"
+            class="btn btn-primary"
+            [disabled]="!addPlaylistForm.valid">
+        Add
+    </button>
+</form>

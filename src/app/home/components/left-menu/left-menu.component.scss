@@ -1,7 +1,14 @@
 @import 'styles/colors.scss';
 
 :host {
+    display: flex;
+    flex-direction: column;
     width: 300px;
     background-color: $background-gray;
     border-right: 1px solid $main-border;
+    overflow: auto;
+
+    .add-playlist-button {
+        margin: 10px;
+    }
 }

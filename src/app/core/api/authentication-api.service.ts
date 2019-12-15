@@ -13,10 +13,10 @@ export class AuthenticationApiService {
             password: password
         }
 
-        return <Observable<void>>(<unknown>this.http.post('api/account/signin', params));
+        return <Observable<void>>(<unknown>this.http.post('api/authentication/signin', params));
     }
 
     signOut(): Observable<void> {
-        return <Observable<void>>(<unknown>this.http.post('api/account/signout', {}));
+        return <Observable<void>>(<unknown>this.http.post('api/authentication/signout', {}));
     }
 }

@@ -1,3 +1,5 @@
+import * as HttpStatus from 'http-status-codes'
+
 import { NotificationsService as AngularNotificationsService } from 'angular2-notifications';
 import { Injectable } from '@angular/core';
 
@@ -15,6 +17,10 @@ export class NotificationsService {
     }
 
     httpError(title: string, error: any) {
+        if (error.status === HttpStatus.UNAUTHORIZED) {
+            return;
+        }
+
         let message: string;
 
         if (error.error && error.error.errorMessage) {
