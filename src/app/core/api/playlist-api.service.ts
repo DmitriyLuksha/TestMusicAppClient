@@ -10,7 +10,7 @@ export class PlaylistApiService {
     
     addPlaylist(name: string): Observable<void> {
         const params = {
-            name: name
+            name
         };
  
         return <Observable<void>>(<unknown>this.http.post('api/playlists', params));
@@ -18,5 +18,14 @@ export class PlaylistApiService {
 
     getPlaylists(): Observable<Playlist[]> {
         return <Observable<Playlist[]>>this.http.get('api/playlists');
+    }
+
+    uploadMusicFile(playlistId: string, name: string, file: File): Observable<void> {
+        let formData = new FormData();
+
+        formData.append('name', name);
+        formData.append('file', file, file.name);
+
+        return <Observable<void>>(<unknown>this.http.post(`api/playlists/${playlistId}/uploadFile`, formData));
     }
 }

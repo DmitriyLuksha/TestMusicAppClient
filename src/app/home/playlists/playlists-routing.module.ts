@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AddPlaylistComponent } from './components/add-playlist/add-playlist.component';
 import { PlaylistComponent } from './components/playlist/playlist.component';
 import { UploadComponent } from './components/upload/upload.component';
-import { SHOW_SELECTED_PLAYLIST } from '../constants/route-data-keys';
+import { SHOW_SELECTED_PLAYLIST } from '../constants/route-data-keys.constant';
 
 
 const routes: Routes = [

@@ -8,7 +8,7 @@ import PlaylistSelectedEvent from '../../events/playlistSelected.event';
 import PlaylistUpdatedEvent from 'src/app/home/events/playlistUpdated.event';
 import { Router } from '@angular/router';
 import { RouteDataService } from 'src/app/core/services/route-data.service';
-import { SHOW_SELECTED_PLAYLIST } from '../../constants/route-data-keys';
+import { SHOW_SELECTED_PLAYLIST } from '../../constants/route-data-keys.constant';
 
 @Component({
     selector: 'sma-left-menu',
