@@ -1,10 +1,22 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AddPlaylistComponent } from './components/add-playlist/add-playlist.component';
-import { PlaylistComponent } from './components/playlist/playlist.component';
-import { UploadComponent } from './components/upload/upload.component';
-import { SHOW_SELECTED_PLAYLIST } from '../constants/route-data-keys.constant';
+import { RouterModule, Routes } from '@angular/router';
 
+import { AddPlaylistComponent } from './components/add-playlist/add-playlist.component';
+import { NgModule } from '@angular/core';
+import { PlaylistComponent } from './components/playlist/playlist.component';
+import { SHOW_SELECTED_PLAYLIST } from '../constants/route-data-keys.constant';
+import { UploadComponent } from './components/upload/upload.component';
+
+const playlistRouteData = {
+    data: {
+        [SHOW_SELECTED_PLAYLIST]: true
+    }
+}
+
+const uploadRouteData = {
+    data: {
+        [SHOW_SELECTED_PLAYLIST]: true
+    }
+}
 
 const routes: Routes = [
     {
@@ -17,16 +29,12 @@ const routes: Routes = [
             {
                 path: ':playlistId',
                 component: PlaylistComponent,
-                data: {
-                    [SHOW_SELECTED_PLAYLIST]: true
-                }
+                ...playlistRouteData
             },
             {
                 path: ':playlistId/upload',
                 component: UploadComponent,
-                data: {
-                    [SHOW_SELECTED_PLAYLIST]: true
-                }
+                ...uploadRouteData
             }
         ]
     }
