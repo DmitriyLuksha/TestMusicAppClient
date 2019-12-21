@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subscribable } from 'rxjs';
 
 import { EventsService } from 'src/app/core/services/events.service';
 import { NotificationsService } from 'src/app/core/services/notifications.service';
 import { Playlist } from 'src/app/core/models/playlist.model';
 import { PlaylistApiService } from 'src/app/core/api/playlist-api.service';
-import PlaylistInfoHiddenEvent from '../../events/playlistInfoHidden.event';
-import PlaylistInfoShowedEvent from '../../events/playlistInfoShowed.event';
+import PlaylistSelectedEvent from '../../events/playlistSelected.event';
 import PlaylistUpdatedEvent from 'src/app/home/events/playlistUpdated.event';
 import { Router } from '@angular/router';
+import { RouteDataService } from 'src/app/core/services/route-data.service';
+import { SHOW_SELECTED_PLAYLIST } from '../../constants/route-data-keys';
 
 @Component({
     selector: 'sma-left-menu',
@@ -20,7 +20,8 @@ export class LeftMenuComponent implements OnInit {
         private router: Router,
         private playlistApiService: PlaylistApiService,
         private notificationsService: NotificationsService,
-        private eventsService: EventsService
+        private eventsService: EventsService,
+        private routeDataService: RouteDataService
     ) {
         this.playlists = [];
         this.loadPlaylists();
@@ -31,14 +32,12 @@ export class LeftMenuComponent implements OnInit {
     
     ngOnInit() {
         this.eventsService.on(PlaylistUpdatedEvent, this.loadPlaylists, this);
-        this.eventsService.on(PlaylistInfoShowedEvent, this.onPlaylistInfoShowed, this);
-        this.eventsService.on(PlaylistInfoHiddenEvent, this.onPlaylistInfoHidden, this);
+        this.eventsService.on(PlaylistSelectedEvent, this.onPlaylistSelected, this);
     }
 
     ngOnDestroy() {
         this.eventsService.off(PlaylistUpdatedEvent,this.loadPlaylists);
-        this.eventsService.off(PlaylistInfoShowedEvent, this.onPlaylistInfoShowed);
-        this.eventsService.off(PlaylistInfoHiddenEvent, this.onPlaylistInfoHidden);
+        this.eventsService.off(PlaylistSelectedEvent, this.onPlaylistSelected);
     }
 
     addPlaylist() {
@@ -47,6 +46,15 @@ export class LeftMenuComponent implements OnInit {
 
     onPlaylistClicked(playlist: Playlist) {
         this.router.navigate(['/home/playlists/', playlist.id]);
+    }
+
+    getSelectedPlaylistId() {
+        const currentRouteData = this.routeDataService.getCurrentRouteData();
+        const showSelectedPlaylistId = currentRouteData[SHOW_SELECTED_PLAYLIST];
+
+        return showSelectedPlaylistId
+            ? this.selectedPlaylistId
+            : null;
     }
 
     private loadPlaylists() {
@@ -58,11 +66,7 @@ export class LeftMenuComponent implements OnInit {
             );
     }
 
-    private onPlaylistInfoShowed(event: PlaylistInfoShowedEvent) {
+    private onPlaylistSelected(event: PlaylistSelectedEvent) {
         this.selectedPlaylistId = event.playlistId;
-    }
-
-    private onPlaylistInfoHidden() {
-        this.selectedPlaylistId = null;
     }
 }

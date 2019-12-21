@@ -1,5 +1,5 @@
 import BaseEvent from '../../core/events/base.event';
 
-export default class PlaylistInfoHiddenEvent extends BaseEvent {
+export default class PlaylistSelectedEvent extends BaseEvent {
     playlistId: string;
 }

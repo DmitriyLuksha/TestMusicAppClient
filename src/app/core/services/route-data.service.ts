@@ -13,8 +13,11 @@ export class RouteDataService {
     }
 
     private findLastRoute(route: ActivatedRouteSnapshot): ActivatedRouteSnapshot {
-        if (route.children) {
+        if (route.children && route.children[0]) {
             return this.findLastRoute(route.children[0]);
+        }
+        else {
+            return route;
         }
     }
 }

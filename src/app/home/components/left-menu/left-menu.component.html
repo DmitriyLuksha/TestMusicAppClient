@@ -5,6 +5,6 @@
 </button>
 <sma-playlists-list
     [playlists]="playlists"
-    [selectedPlaylistId]="selectedPlaylistId"
+    [selectedPlaylistId]="getSelectedPlaylistId()"
     (playlistClicked)="onPlaylistClicked($event)">
 </sma-playlists-list>
