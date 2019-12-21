@@ -9,20 +9,9 @@ const routes: Routes = [
         component: HomeComponent,
         children: [
             {
-                // TODO Maybe move modules for the same path in a same folder?
                 path: 'playlists',
-                children: [
-                   {
-                        path: 'add',
-                        loadChildren: () => import('./add-playlist/add-playlist.module')
-                            .then(m => m.AddPlaylistModule)
-                   },
-                   {
-                       path: ':playlistId',
-                       loadChildren: () => import('./playlist/playlist.module')
-                            .then(m => m.PlaylistModule)
-                   }
-                ]
+                loadChildren: () => import('./playlists/playlists.module')
+                    .then(m => m.PlaylistsModule)
             }
         ]
     }

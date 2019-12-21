@@ -13,6 +13,7 @@ const routes: Routes = [
                 pathMatch: 'full',
                 redirectTo: 'signin',
             },
+            // TODO Maybe merge into single module?
             {
                 path: 'signin',
                 loadChildren: () => import('./signin/signin.module')

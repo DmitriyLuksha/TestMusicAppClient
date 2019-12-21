@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EventsService } from 'src/app/core/services/events.service';
 import PlaylistInfoHiddenEvent from 'src/app/home/events/playlistInfoHidden.event';
 import PlaylistInfoShowedEvent from 'src/app/home/events/playlistInfoShowed.event';
@@ -13,7 +13,8 @@ import PlaylistInfoShowedEvent from 'src/app/home/events/playlistInfoShowed.even
 export class PlaylistComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
-        private eventsService: EventsService
+        private eventsService: EventsService,
+        private router: Router
     ) { }
 
     private previousPlaylistId: string;
@@ -35,6 +36,10 @@ export class PlaylistComponent implements OnInit {
 
     ngOnDestroy() {
         this.sendPlaylistInfoHiddenEvent();
+    }
+
+    upload() {
+        this.router.navigate(['add']);
     }
 
     private sendPlaylistInfoHiddenEvent() {
