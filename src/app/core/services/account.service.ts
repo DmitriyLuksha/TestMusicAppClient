@@ -20,7 +20,8 @@ export class AccountService {
             this.accountDetailsPromise = this.accountApiService.getAccountDetails().toPromise();
 
             this.accountDetailsPromise
-                .then(() => this.accountDetailsPromise = null);
+                .then(() => this.accountDetailsPromise = null)
+                .catch(() => this.accountDetailsPromise = null);
 
             return this.accountDetailsPromise;
         }
