@@ -15,6 +15,7 @@ import { NotificationsService } from './core/services/notifications.service';
 import { PlaylistApiService } from './core/api/playlist-api.service';
 import { RouteDataService } from './core/services/route-data.service';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { TrackApiService } from './core/api/track-api.service';
 
 @NgModule({
     declarations: [
@@ -36,6 +37,7 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
         AccountApiService,
         AuthenticationApiService,
         PlaylistApiService,
+        TrackApiService,
         NotificationsService,
         AuthenticationService,
         AccountService,

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MusicUploadType } from 'src/app/core/enums/musicUploadType.enum';
 import { UploadMusicFormData, UploadMusicFormFileData } from '../../models/upload-music-form-data.model';
-import { PlaylistApiService } from 'src/app/core/api/playlist-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { NotificationsService } from 'src/app/core/services/notifications.service';
+import { TrackApiService } from 'src/app/core/api/track-api.service';
 
 @Component({
   selector: 'sma-upload',
@@ -12,7 +12,7 @@ import { NotificationsService } from 'src/app/core/services/notifications.servic
 })
 export class UploadComponent implements OnInit {
     constructor(
-        private playlistApiService: PlaylistApiService,
+        private trackApiService: TrackApiService,
         private activatedRoute: ActivatedRoute,
         private notificationsService: NotificationsService
     ) {
@@ -47,7 +47,7 @@ export class UploadComponent implements OnInit {
     upload() {
         const playlistId = this.activatedRoute.snapshot.paramMap.get('playlistId');
 
-        this.playlistApiService.uploadMusicFile(playlistId,
+        this.trackApiService.uploadFile(playlistId,
                 this.uploadMusicFormData.name,
                 this.uploadMusicFormData.fileUploadData.file)
             .subscribe(
