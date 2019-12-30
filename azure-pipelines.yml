@@ -1,8 +1,8 @@
 steps:
 - task: NodeTool@0
+  displayName: 'Install Node.js'
   inputs:
     versionSpec: '10.x'
-  displayName: 'Install Node.js'
 
 - script: |
     npm install -g @angular/cli
@@ -11,15 +11,15 @@ steps:
   displayName: 'npm install and build'
 
 - task: CopyFiles@2
+  displayName: 'Copy files'
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)/dist/TestMusicAppClient'
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-  displayName: 'Copy files'
 
 - task: PublishBuildArtifacts@1
+  displayName: 'Publish'
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'angular'
     publishLocation: 'Container'
-  displayName: 'Publish'
