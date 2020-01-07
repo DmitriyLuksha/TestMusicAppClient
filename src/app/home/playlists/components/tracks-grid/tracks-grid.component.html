@@ -1,0 +1,7 @@
+<div class="tracks-grid-wrapper">
+    <div *ngFor="let track of tracks" class="track">
+        <button class="btn btn-default play-button"></button>
+        <p class="track-name">{{track.trackName}}</p>
+    </div>
+    <p *ngIf="tracks.length === 0" class="tracks-not-found-notification">No tracks</p>
+</div>

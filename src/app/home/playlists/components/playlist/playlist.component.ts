@@ -1,8 +1,11 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute, Router } from '@angular/router';
 import { EventsService } from 'src/app/core/services/events.service';
+import { NotificationsService } from 'src/app/core/services/notifications.service';
 import PlaylistSelectedEvent from 'src/app/home/events/playlistSelected.event';
+import { Track } from 'src/app/core/models/track.model';
+import { TrackApiService } from 'src/app/core/api/track-api.service';
 
 @Component({
     selector: 'sma-playlist',
@@ -13,8 +16,12 @@ export class PlaylistComponent implements OnInit {
     constructor(
         private activatedRoute: ActivatedRoute,
         private eventsService: EventsService,
-        private router: Router
+        private router: Router,
+        private trackApiService: TrackApiService,
+        private notificationsService: NotificationsService
     ) { }
+
+    tracks: Track[];
 
     ngOnInit() {
         this.activatedRoute.paramMap.subscribe(params => {
@@ -24,6 +31,14 @@ export class PlaylistComponent implements OnInit {
             event.playlistId = currentPlaylistId;
 
             this.eventsService.broadcast(event);
+
+            this.trackApiService.getTracksForPlaylist(currentPlaylistId)
+                .subscribe(
+                    (tracks) => {
+                        this.tracks = tracks;
+                    },
+                    error => this.notificationsService.httpError('Receiving tracks', error)
+                );
         });
     }
 

@@ -1,0 +1,27 @@
+:host {
+    display: block;
+    width: 100%;
+    border: 1px solid #E5E5E5;
+    padding: 5px;
+
+    .tracks-grid-wrapper {
+        .play-button {
+            width: 32px;
+            height: 32px;
+            display: inline-block;
+            background-image: url('/assets/images/play.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .track-name {
+            display: inline;
+            margin-left: 50px;
+            vertical-align: middle;
+        }
+
+        .tracks-not-found-notification {
+            margin: 0 10px;
+        }
+    }
+}
