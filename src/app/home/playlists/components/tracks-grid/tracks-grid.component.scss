@@ -5,19 +5,23 @@
     padding: 5px;
 
     .tracks-grid-wrapper {
-        .play-button {
-            width: 32px;
-            height: 32px;
-            display: inline-block;
-            background-image: url('/assets/images/play.png');
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
+        .track {
+            margin-bottom: 4px;
 
-        .track-name {
-            display: inline;
-            margin-left: 50px;
-            vertical-align: middle;
+            .play-button {
+                width: 32px;
+                height: 32px;
+                display: inline-block;
+                background-image: url('/assets/images/play.png');
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            .track-name {
+                display: inline;
+                margin-left: 50px;
+                vertical-align: middle;
+            }
         }
 
         .tracks-not-found-notification {
