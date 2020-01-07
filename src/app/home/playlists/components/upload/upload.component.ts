@@ -35,6 +35,8 @@ export class UploadComponent implements OnInit {
         }
     ];
 
+    private readonly maxUploadSize = 30 * 1000**2;
+
     uploadMusicFormData: UploadMusicFormData;
     musicUploadType = MusicUploadType;
 
@@ -46,8 +48,16 @@ export class UploadComponent implements OnInit {
     }
 
     upload() {
+        if (this.uploadMusicFormData.fileUploadData.file.size > this.maxUploadSize) {
+            const maxUploadSizeMb = this.maxUploadSize / 1000**2;
+            const error = `You can\'t uplaod file large than ${maxUploadSizeMb}`;
+            this.notificationsService.error('File uploading', error);
+
+            return;
+        }
+
         const playlistId = this.activatedRoute.snapshot.paramMap.get('playlistId');
-        
+
         this.trackApiService.uploadFile(playlistId,
                 this.uploadMusicFormData.name,
                 this.uploadMusicFormData.fileUploadData.file)
