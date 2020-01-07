@@ -3,5 +3,5 @@
         <button class="btn btn-default play-button"></button>
         <p class="track-name">{{track.trackName}}</p>
     </div>
-    <p *ngIf="tracks.length === 0" class="tracks-not-found-notification">No tracks</p>
+    <p *ngIf="tracks && tracks.length === 0" class="tracks-not-found-notification">No tracks</p>
 </div>

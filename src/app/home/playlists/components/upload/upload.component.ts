@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MusicUploadType } from 'src/app/core/enums/musicUploadType.enum';
 import { UploadMusicFormData, UploadMusicFormFileData } from '../../models/upload-music-form-data.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationsService } from 'src/app/core/services/notifications.service';
 import { TrackApiService } from 'src/app/core/api/track-api.service';
 
@@ -14,7 +14,8 @@ export class UploadComponent implements OnInit {
     constructor(
         private trackApiService: TrackApiService,
         private activatedRoute: ActivatedRoute,
-        private notificationsService: NotificationsService
+        private notificationsService: NotificationsService,
+        private router: Router,
     ) {
         this.uploadMusicFormData = <UploadMusicFormData>{};
         this.uploadMusicFormData.selectedUploadType = this.uploadTypes[0].value;
@@ -46,13 +47,16 @@ export class UploadComponent implements OnInit {
 
     upload() {
         const playlistId = this.activatedRoute.snapshot.paramMap.get('playlistId');
-
+        
         this.trackApiService.uploadFile(playlistId,
                 this.uploadMusicFormData.name,
                 this.uploadMusicFormData.fileUploadData.file)
             .subscribe(
-                () => this.notificationsService.success('File uploaded'),
+                () => {
+                    this.notificationsService.success('File placed in the queue');
+                    this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+                },
                 error => this.notificationsService.httpError('File upload', error)
-            )
+            );
     }
 }
