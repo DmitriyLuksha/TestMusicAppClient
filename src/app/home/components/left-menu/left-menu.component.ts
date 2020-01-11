@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { EventsService } from 'src/app/core/services/events.service';
 import { NotificationsService } from 'src/app/core/services/notifications.service';
@@ -6,8 +6,8 @@ import { Playlist } from 'src/app/core/models/playlist.model';
 import { PlaylistApiService } from 'src/app/core/api/playlist-api.service';
 import PlaylistSelectedEvent from '../../events/playlistSelected.event';
 import PlaylistUpdatedEvent from 'src/app/home/events/playlistUpdated.event';
-import { Router } from '@angular/router';
 import { RouteDataService } from 'src/app/core/services/route-data.service';
+import { Router } from '@angular/router';
 import { SHOW_SELECTED_PLAYLIST } from '../../constants/route-data-keys.constant';
 
 @Component({
@@ -15,7 +15,7 @@ import { SHOW_SELECTED_PLAYLIST } from '../../constants/route-data-keys.constant
     templateUrl: './left-menu.component.html',
     styleUrls: ['./left-menu.component.scss']
 })
-export class LeftMenuComponent implements OnInit {
+export class LeftMenuComponent implements OnInit, OnDestroy {
     constructor(
         private router: Router,
         private playlistApiService: PlaylistApiService,
