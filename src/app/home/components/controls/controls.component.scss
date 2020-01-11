@@ -6,4 +6,21 @@
     height: 100px;
     background-color: $background-gray;
     border-top: 1px solid $main-border;
+
+    .toggle-play-state-button {
+        width: 32px;
+        height: 32px;
+        margin: 30px auto;
+        display: block;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        &.playing {
+            background-image: url('/assets/images/stop.png');
+        }
+
+        &.paused {
+            background-image: url('/assets/images/play.png');
+        }
+    }
 }

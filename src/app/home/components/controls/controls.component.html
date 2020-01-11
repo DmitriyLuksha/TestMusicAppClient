@@ -1,0 +1,5 @@
+<button class="toggle-play-state-button btn btn-default"
+    [class.playing]="isPlaying()"
+    [class.paused]="!isPlaying()"
+    (click)="togglePlayState()">
+</button>
