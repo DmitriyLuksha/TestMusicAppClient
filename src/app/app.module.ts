@@ -18,6 +18,7 @@ import { PlaylistApiService } from './core/api/playlist-api.service';
 import { RouteDataService } from './core/services/route-data.service';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { TrackApiService } from './core/api/track-api.service';
+import { YoutubeService } from './core/services/youtube.service';
 
 @NgModule({
     declarations: [
@@ -46,6 +47,7 @@ import { TrackApiService } from './core/api/track-api.service';
         EventsService,
         RouteDataService,
         PlayerService,
+        YoutubeService,
         NotificationConnection
     ],
     bootstrap: [AppComponent]

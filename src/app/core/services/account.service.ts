@@ -11,7 +11,7 @@ export class AccountService {
     private accountDetailsCache: AccountDetails;
     private accountDetailsPromise: Promise<AccountDetails>;
     
-    async getAccountDetails(): Promise<AccountDetails> {
+    async getAccountDetailsAsync(): Promise<AccountDetails> {
         if (this.accountDetailsPromise) {
             return this.accountDetailsPromise;
         }

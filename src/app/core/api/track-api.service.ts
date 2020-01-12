@@ -18,6 +18,16 @@ export class TrackApiService {
         return <Observable<void>>(<unknown>this.http.post(`api/tracks/uploadFile`, formData));
     }
 
+    uploadYoutube(playlistId: string, name: string, videoId: string): Observable<void> {
+        const params = {
+            playlistId,
+            name,
+            videoId
+        };
+
+        return <Observable<void>>(<unknown>this.http.post(`api/tracks/uploadYoutube`, params));
+    }
+
     getTracksForPlaylist(playlistId: string): Observable<Track[]> {
         const params = {
             playlistId: playlistId

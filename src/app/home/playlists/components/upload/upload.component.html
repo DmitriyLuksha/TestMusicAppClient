@@ -21,16 +21,10 @@
             required>
     </div>
     <div *ngIf="uploadMusicFormData.selectedUploadType === musicUploadType.File">
-        <div class="form-group">
-            <label for="file">File</label>
-            <input name="file"
-                id="file"
-                type="file"
-                class="form-control-file"
-                (change)="fileChanged($event.target.files[0])"
-                accept=".aac,.flac,.m4a,.mp3,.wav,.wma"
-                required>
-        </div>
+        <sma-upload-file></sma-upload-file>
+    </div>
+    <div *ngIf="uploadMusicFormData.selectedUploadType === musicUploadType.Youtube">
+        <sma-upload-youtube></sma-upload-youtube>
     </div>
     <button type="submit"
             class="btn btn-primary"

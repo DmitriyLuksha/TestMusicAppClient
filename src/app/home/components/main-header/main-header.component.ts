@@ -19,7 +19,7 @@ export class MainHeaderComponent implements OnInit {
 
     async ngOnInit() {
         try {
-            this.accountDetails = await this.accountService.getAccountDetails();
+            this.accountDetails = await this.accountService.getAccountDetailsAsync();
         }
         catch(error) {
             this.authenticationService.redirectToAuthenticationPage();

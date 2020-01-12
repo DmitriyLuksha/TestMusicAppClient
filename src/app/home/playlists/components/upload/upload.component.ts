@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MusicUploadType } from 'src/app/core/enums/musicUploadType.enum';
-import { UploadMusicFormData, UploadMusicFormFileData } from '../../models/upload-music-form-data.model';
+import { UploadMusicFormData } from '../../models/upload-music-form-data.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { NotificationsService } from 'src/app/core/services/notifications.service';
-import { TrackApiService } from 'src/app/core/api/track-api.service';
+import { UploadFileComponent } from '../upload-file/upload-file.component';
+import { UploadYoutubeComponent } from '../upload-youtube/upload-youtube.component';
 
 @Component({
   selector: 'sma-upload',
@@ -12,14 +14,12 @@ import { TrackApiService } from 'src/app/core/api/track-api.service';
 })
 export class UploadComponent implements OnInit {
     constructor(
-        private trackApiService: TrackApiService,
         private activatedRoute: ActivatedRoute,
         private notificationsService: NotificationsService,
-        private router: Router,
+        private router: Router
     ) {
         this.uploadMusicFormData = <UploadMusicFormData>{};
         this.uploadMusicFormData.selectedUploadType = this.uploadTypes[0].value;
-        this.uploadMusicFormData.fileUploadData = <UploadMusicFormFileData>{};
 
         this.musicUploadType = MusicUploadType;
     }
@@ -35,38 +35,37 @@ export class UploadComponent implements OnInit {
         }
     ];
 
-    private readonly maxUploadSize = 30 * 1000**2;
-
     uploadMusicFormData: UploadMusicFormData;
     musicUploadType = MusicUploadType;
+
+    @ViewChild(UploadFileComponent, { static: false })
+    uploadFileComponent: UploadFileComponent;
+
+    @ViewChild(UploadYoutubeComponent, { static: false })
+    uploadYoutubeComponent: UploadYoutubeComponent;
 
     ngOnInit() {
     }
 
-    fileChanged(file: File) {
-        this.uploadMusicFormData.fileUploadData.file = file;
-    }
-
     upload() {
-        if (this.uploadMusicFormData.fileUploadData.file.size > this.maxUploadSize) {
-            const maxUploadSizeMb = this.maxUploadSize / 1000**2;
-            const error = `You can\'t uplaod file large than ${maxUploadSizeMb}`;
-            this.notificationsService.error('File uploading', error);
+        const playlistId = this.activatedRoute.snapshot.paramMap.get('playlistId');
+        const trackName = this.uploadMusicFormData.name;
 
-            return;
+        let uploadingObservable: Observable<void>;
+
+        if (this.uploadMusicFormData.selectedUploadType === MusicUploadType.File) {
+            uploadingObservable = this.uploadFileComponent.uploadFile(playlistId, trackName);
+        }
+        else {
+            uploadingObservable = this.uploadYoutubeComponent.uploadVideo(playlistId, trackName);
         }
 
-        const playlistId = this.activatedRoute.snapshot.paramMap.get('playlistId');
-
-        this.trackApiService.uploadFile(playlistId,
-                this.uploadMusicFormData.name,
-                this.uploadMusicFormData.fileUploadData.file)
-            .subscribe(
-                () => {
-                    this.notificationsService.success('File placed in the queue');
-                    this.router.navigate(['../'], { relativeTo: this.activatedRoute });
-                },
-                error => this.notificationsService.httpError('File upload', error)
-            );
+        uploadingObservable.subscribe(
+            () => {
+                this.notificationsService.success('File placed in the queue');
+                this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+            },
+            error => this.notificationsService.httpError('File upload', error)
+        );
     }
 }
