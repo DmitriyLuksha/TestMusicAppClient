@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { EventsService } from 'src/app/core/services/events.service';
+import { Router } from '@angular/router';
+import UserDetailsChanged from 'src/app/core/events/userDetailsChanged.event';
 
 @Component({
     selector: 'sma-user-menu',
@@ -11,7 +13,8 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 export class UserMenuComponent implements OnInit {
     constructor(
         private authenticationService: AuthenticationService,
-        private router: Router
+        private router: Router,
+        private eventsService: EventsService
     ) { }
 
     ngOnInit() {
@@ -20,6 +23,9 @@ export class UserMenuComponent implements OnInit {
     signOut() {
         this.authenticationService
             .signOut()
-            .subscribe(() => this.router.navigate(['/authentication/signin']));
+            .subscribe(() => {
+                this.eventsService.broadcast(new UserDetailsChanged());
+                this.router.navigate(['/authentication/signin']);
+            });
     }
 }
