@@ -27,9 +27,11 @@ export class TelemetryService {
     }
 
     trackException(error) {
-        this.applicationInsights.trackException({
-            exception: error
-        });
+        if (this.applicationInsights) {
+            this.applicationInsights.trackException({
+                exception: error
+            });
+        }
     }
     
     private setUpApplicationInsights(instrumentationKey: string) {
