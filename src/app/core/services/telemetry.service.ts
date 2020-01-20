@@ -1,7 +1,7 @@
+import { ApplicationInsights, IExceptionTelemetry } from '@microsoft/applicationinsights-web';
 import { NavigationEnd, ResolveEnd, Router } from '@angular/router';
 
 import { AccountService } from './account.service';
-import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 import { ConfigApiService } from '../api/config-api.service';
 import { EventsService } from './events.service';
 import { Injectable } from '@angular/core';
@@ -26,8 +26,10 @@ export class TelemetryService {
         this.eventsService.on(UserDetailsChanged, this.updateUserId, this);
     }
 
-    trackException(exception) {
-        this.applicationInsights.trackException(exception);
+    trackException(error) {
+        this.applicationInsights.trackException({
+            exception: error
+        });
     }
     
     private setUpApplicationInsights(instrumentationKey: string) {

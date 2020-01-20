@@ -13,5 +13,6 @@ export class TelemetryErrorHandler implements ErrorHandler  {
 
     handleError(error) {
         this.telemetryService.trackException(error);
+        console.error(error);
     } 
 }
