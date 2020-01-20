@@ -10,12 +10,12 @@ const routes: Routes = [
     },
     {
         path: 'authentication',
-        loadChildren: () => import('./authentication/authentication.module')
+        loadChildren: () => import('./modules/authentication/authentication.module')
             .then(m => m.AuthenticationModule)
     },
     {
         path: 'home',
-        loadChildren: () => import('./home/home.module')
+        loadChildren: () => import('./modules/home/home.module')
             .then(m => m.HomeModule)
     }
 ];

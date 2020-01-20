@@ -4,7 +4,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AccountApiService } from './core/api/account-api.service';
 import { AccountService } from './core/services/account.service';
 import { ApiInterceptor } from './core/interceptors/api.interceptor';
-import { AppComponent } from './components/app/app.component';
+import { AppComponent } from './pages/app/app.page';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthenticationApiService } from './core/api/authentication-api.service';
 import { AuthenticationService } from './core/services/authentication.service';

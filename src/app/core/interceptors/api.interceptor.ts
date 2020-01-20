@@ -15,6 +15,12 @@ export class ApiInterceptor implements HttpInterceptor {
 
     apiPrefix = 'api/';
 
+    // Since we can't pass data to interceptors we have to hardcode route
+    // TODO Think about bypassing this restriction
+    ignoreUnauthorized = [
+        'api/accounts/details'
+    ]
+
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
         // Ignore non-api calls
         if (!req.url.startsWith(this.apiPrefix)) {
@@ -41,7 +47,8 @@ export class ApiInterceptor implements HttpInterceptor {
                 return event;
             }),
             catchError((err: HttpErrorResponse) => {
-                if (err.status === HttpStatus.UNAUTHORIZED) {
+                if (err.status === HttpStatus.UNAUTHORIZED
+                        && !this.ignoreUnauthorized.includes(req.url)) {
                     this.authenticationService.redirectToAuthenticationPage();
                 }
                 
