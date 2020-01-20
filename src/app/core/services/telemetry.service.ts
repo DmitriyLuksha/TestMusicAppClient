@@ -25,6 +25,10 @@ export class TelemetryService {
         // TelemetryService is a singleton, we don't need to unsubscribe
         this.eventsService.on(UserDetailsChanged, this.updateUserId, this);
     }
+
+    trackException(exception) {
+        this.applicationInsights.trackException(exception);
+    }
     
     private setUpApplicationInsights(instrumentationKey: string) {
         // Telemetry disabled
