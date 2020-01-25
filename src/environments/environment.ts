@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    baseApiUrl: 'https://localhost:44349/api',
-    signalRUrl: 'https://localhost:44349'
+    baseApiUrl: 'http://testmusicapp.local/api',
+    signalRUrl: 'http://testmusicapp.local'
 };
