@@ -1,5 +1,6 @@
 import { AddPlaylistPage } from './pages/addPlaylist/add-playlist.page';
 import { CommonModule } from '@angular/common';
+import { EventNotificationService } from './service/event-notification.service';
 import { FormsModule } from '@angular/forms';
 import { HomePageModule } from './pages/home/home-page.module';
 import { HomeRoutingModule } from './home-routing.module';
@@ -20,6 +21,9 @@ import { UploadTrackPageModule } from './pages/uploadTrack/upload-track-page.mod
         FormsModule,
         HomePageModule,
         UploadTrackPageModule
+    ],
+    providers: [
+        EventNotificationService
     ]
 })
 export class HomeModule { }

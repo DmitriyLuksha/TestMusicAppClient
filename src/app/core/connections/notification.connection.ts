@@ -3,7 +3,7 @@ import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import { EventsService } from '../services/events.service';
 import { Injectable } from '@angular/core';
 import { NotificationsService } from '../services/notifications.service';
-import TrackUploadFinished from '../events/trackUploadFinished.event';
+import TrackUploadFinishedEvent from '../events/trackUploadFinished.event';
 import { environment } from '../../../environments/environment';
 
 @Injectable()
@@ -46,6 +46,6 @@ export class NotificationConnection {
     }
 
     private registeredEvents = {
-        TrackUploadFinishedNotificationMessage: TrackUploadFinished
+        TrackUploadFinishedNotificationMessage: TrackUploadFinishedEvent
     };
 }

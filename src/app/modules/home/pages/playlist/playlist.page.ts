@@ -6,7 +6,7 @@ import { NotificationsService } from 'src/app/core/services/notifications.servic
 import PlaylistSelectedEvent from 'src/app/modules/home/events/playlistSelected.event';
 import { Track } from 'src/app/core/models/track.model';
 import { TrackApiService } from 'src/app/core/api/track-api.service';
-import TrackUploadFinished from 'src/app/core/events/trackUploadFinished.event';
+import TrackUploadFinishedEvent from 'src/app/core/events/trackUploadFinished.event';
 
 @Component({
     templateUrl: './playlist.page.html',
@@ -35,11 +35,11 @@ export class PlaylistPage implements OnInit, OnDestroy {
             this.updateTracks();
         });
 
-        this.eventsService.on(TrackUploadFinished, this.updateTracks, this);
+        this.eventsService.on(TrackUploadFinishedEvent, this.updateTracks, this);
     }
 
     ngOnDestroy() {
-        this.eventsService.off(TrackUploadFinished, this.updateTracks);
+        this.eventsService.off(TrackUploadFinishedEvent, this.updateTracks);
     }
 
     upload() {
